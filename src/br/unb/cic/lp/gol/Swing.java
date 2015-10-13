@@ -20,9 +20,13 @@ public class Swing {
 	private GameController controller;
 
 	private final JButton[][] cells;
+
+//	Stats
 	private final JLabel aliveCells;
 	private final JLabel numberOfKills;
 	private final JLabel numberOfRevives;
+	private final JLabel strategy;
+
 	private boolean cycle;
 
 	/* Ao usar a classe swing, aqui e criado o JFrame
@@ -138,6 +142,9 @@ public class Swing {
 		numberOfKills = new JLabel(String.valueOf(engine.numberOfKills()));
 		stats.add(numberOfKills);
 
+		strategy = new JLabel(engine.getEstrategia().getName());
+		stats.add(strategy);
+
 		f.add(stats, BorderLayout.EAST);
 
 
@@ -170,9 +177,11 @@ public class Swing {
 				cells[i][j].setBackground(Color.decode(engine.isCellAlive(i, j) ? ALIVE_CELL : DEAD_CELL));
 			}
 		}
+
 		aliveCells.setText(String.valueOf(engine.numberOfAliveCells()));
 		numberOfRevives.setText(String.valueOf(engine.numberOfRevives()));
 		numberOfKills.setText(String.valueOf(engine.numberOfKills()));
+		strategy.setText(engine.getEstrategia().getName());
 	}
 
 	private void nextGeneration() {
