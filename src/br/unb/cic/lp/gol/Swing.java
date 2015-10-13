@@ -182,5 +182,5 @@ public class Swing {
 	private void halt() {
 		controller.halt();
 	}
-	
+
 }
