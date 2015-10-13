@@ -37,22 +37,41 @@ public class Swing {
 
 		cycle = false;
 
-		final JFrame f = new JFrame();
-		
+		JFrame f = new JFrame();
+
+		JPanel stats = new JPanel();
+		JPanel game = new JPanel(new BorderLayout());
+
+
+		JPanel statistics = new JPanel();
+		stats.add(statistics, BorderLayout.LINE_START);
+
+		JPanel strats = new JPanel();
+		strats.setLayout(new BoxLayout(strats, BoxLayout.Y_AXIS));
 		JPanel buttons = new JPanel();
-		f.add(buttons, BorderLayout.SOUTH);
+		JPanel cellsPanel = new JPanel();
+
+
+//		game.setBackground(Color.black);
+
+		game.add(strats, BorderLayout.LINE_START);
+		game.add(cellsPanel, BorderLayout.CENTER);
+		game.add(buttons, BorderLayout.PAGE_END);
+
+		f.add(stats, BorderLayout.LINE_END);
+		f.add(game, BorderLayout.CENTER);
 
 		JButton tLifeCycle = new JButton("Start LifeCycle");
 		tLifeCycle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(cycle) {
+				if (cycle) {
 					stopLifeCycle(tLifeCycle);
-				}else{
+				} else {
 					startLifeCycle(tLifeCycle);
 				}
-			}		
+			}
 		});
 		buttons.add(tLifeCycle);
 
@@ -65,32 +84,30 @@ public class Swing {
 			}
 		});
 		buttons.add(bNextGen);
-		
+
+
+
 		JButton bConway = new JButton("Conway");
 		bConway.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				engine.setEstrategia(new Conway()); 
-				update();	
-			}		
+				engine.setEstrategia(new Conway());
+				update();
+			}
 		});
-		buttons.add(bConway);
-		
+		strats.add(bConway);
+
 		JButton bHighLife = new JButton("High Life");
 		bHighLife.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				engine.setEstrategia(new HighLife()); 
-				update();	
-			}		
+				engine.setEstrategia(new HighLife());
+				update();
+			}
 		});
-		buttons.add(bHighLife);
-
-
-		JPanel cellsPanel = new JPanel();
-		cells = new JButton[engine.getWidth()][engine.getHeight()];
+		strats.add(bHighLife);
 
 		ActionListener buttonClick = new ActionListener() {
 			@Override
@@ -111,6 +128,7 @@ public class Swing {
 			}
 		};
 
+		cells = new JButton[engine.getWidth()][engine.getHeight()];
 		for (int i = 0; i < engine.getHeight(); i++) {
 			for (int j = 0; j < engine.getWidth(); j++) {
 				if(i <= 4 && j <= 4)
@@ -129,23 +147,20 @@ public class Swing {
 
 		cellsPanel.setLayout(new GridLayout(engine.getWidth(), engine.getHeight()));
 
-		f.add(cellsPanel, BorderLayout.CENTER);
-
-		JPanel stats = new JPanel();
 
 		aliveCells = new JLabel(String.valueOf(engine.numberOfAliveCells()));
-		stats.add(aliveCells);
+		statistics.add(aliveCells);
 
 		numberOfRevives= new JLabel(String.valueOf(engine.numberOfRevives()));
-		stats.add(numberOfRevives);
+		statistics.add(numberOfRevives);
 
 		numberOfKills = new JLabel(String.valueOf(engine.numberOfKills()));
-		stats.add(numberOfKills);
+		statistics.add(numberOfKills);
 
 		strategy = new JLabel(engine.getEstrategia().getName());
-		stats.add(strategy);
+		statistics.add(strategy);
 
-		f.add(stats, BorderLayout.EAST);
+
 
 
 		f.setSize(800, 600);
