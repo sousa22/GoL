@@ -1,5 +1,7 @@
 package br.unb.cic.lp.gol;
 
+import javax.swing.*;
+
 /**
  * Essa tambem eh uma classe com baixa coesao, 
  * pois mustura caracteristicas de Model (as propriedades) 
@@ -35,12 +37,16 @@ public class Statistics {
 	}
 	
 	public void display() {
-		System.out.println("=================================");
+		/*System.out.println("=================================");
 		System.out.println("           Statistics            ");
 		System.out.println("=================================");
 		System.out.println("Revived cells: " + revivedCells);
 		System.out.println("Killed cells: " + killedCells);
-		System.out.println("=================================");
+		System.out.println("=================================");*/
+
+		JOptionPane.showMessageDialog(null, "=================================\nStatistics            \n=================================\nRevived cells: "
+				+ revivedCells + "\nKilled cells: " + killedCells + "\n=================================");
+
 	}
 
 }

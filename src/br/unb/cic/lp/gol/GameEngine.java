@@ -75,6 +75,20 @@ public class GameEngine {
 
 		geracao++;
 		updateStatistics(mustRevive, mustKill);
+
+	}
+
+	protected void KillThemAll(){
+		List<Cell> mustRevive = new ArrayList<Cell>();
+		List<Cell> mustKill = new ArrayList<Cell>();
+
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+
+				mustKill.add(cells[i][j]);
+			}
+		}
+		updateStatistics(mustRevive,mustKill);
 	}
 
 	/*
@@ -187,7 +201,7 @@ public class GameEngine {
 	/*
 	 * Verifica se uma posicao (a, b) referencia uma celula valida no tabuleiro.
 	 */
-	private boolean validPosition(int a, int b) {
+	protected boolean validPosition(int a, int b) {
 		return a >= 0 && a < height && b >= 0 && b < width;
 	}
 
