@@ -48,12 +48,15 @@ public class Swing {
 		stats.add(statistics, BorderLayout.LINE_START);
 
 		JPanel strats = new JPanel();
-		strats.setLayout(new BoxLayout(strats, BoxLayout.Y_AXIS));
+		strats.setLayout(new GridBagLayout());
 		JPanel buttons = new JPanel();
 		JPanel cellsPanel = new JPanel();
 
+		GridBagConstraints c = new GridBagConstraints();
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 0;
 
-//		game.setBackground(Color.black);
 
 		game.add(strats, BorderLayout.LINE_START);
 		game.add(cellsPanel, BorderLayout.CENTER);
@@ -86,6 +89,8 @@ public class Swing {
 		});
 		buttons.add(bNextGen);
 
+
+
 		JButton bConway = new JButton("Conway");
 		bConway.addActionListener(new ActionListener() {
 			@Override
@@ -96,7 +101,7 @@ public class Swing {
 			}
 		});
 		bConway.setAlignmentX(Component.CENTER_ALIGNMENT);
-		strats.add(bConway);
+		strats.add(bConway, c);
 
 		JButton bDaynNight = new JButton("DaynNight");
 		bDaynNight.addActionListener(new ActionListener() {
@@ -108,7 +113,8 @@ public class Swing {
 			}
 		});
 		bDaynNight.setAlignmentX(Component.CENTER_ALIGNMENT);
-		strats.add(bDaynNight);
+		c.gridy = 1;
+		strats.add(bDaynNight, c);
 
 		JButton bFredkin = new JButton("Frekin");
 		bFredkin.addActionListener(new ActionListener() {
@@ -120,7 +126,8 @@ public class Swing {
 			}
 		});
 		bFredkin.setAlignmentX(Component.CENTER_ALIGNMENT);
-		strats.add(bFredkin);
+		c.gridy = 2;
+		strats.add(bFredkin, c);
 
 		JButton bHighLife = new JButton("High Life");
 		bHighLife.addActionListener(new ActionListener() {
@@ -132,7 +139,8 @@ public class Swing {
 			}
 		});
 		bHighLife.setAlignmentX(Component.CENTER_ALIGNMENT);
-		strats.add(bHighLife);
+		c.gridy = 3;
+		strats.add(bHighLife, c);
 
 		JButton bLiveFreeOrDie = new JButton("LiveFreeOrDie");
 		bLiveFreeOrDie.addActionListener(new ActionListener() {
@@ -144,7 +152,8 @@ public class Swing {
 			}
 		});
 		bLiveFreeOrDie.setAlignmentX(Component.CENTER_ALIGNMENT);
-		strats.add(bLiveFreeOrDie);
+		c.gridy = 4;
+		strats.add(bLiveFreeOrDie, c);
 
 		JButton bMaze = new JButton("Maze");
 		bMaze.addActionListener(new ActionListener() {
@@ -156,7 +165,8 @@ public class Swing {
 			}
 		});
 		bMaze.setAlignmentX(Component.CENTER_ALIGNMENT);
-		strats.add(bMaze);
+		c.gridy = 5;
+		strats.add(bMaze, c);
 
 		JButton bSeeds = new JButton("Seeds");
 		bSeeds.addActionListener(new ActionListener() {
@@ -168,7 +178,8 @@ public class Swing {
 			}
 		});
 		bSeeds.setAlignmentX(Component.CENTER_ALIGNMENT);
-		strats.add(bSeeds);
+		c.gridy = 6;
+		strats.add(bSeeds, c);
 
 		ActionListener buttonClick = new ActionListener() {
 			@Override
@@ -199,7 +210,7 @@ public class Swing {
 				cells[i][j].putClientProperty("i", i);
 				cells[i][j].putClientProperty("j", j);
 				cells[i][j].addActionListener(buttonClick);
-				cells[i][j].setBorder(new LineBorder(Color.BLACK));
+				cells[i][j].setBorder(new LineBorder(Color.darkGray));
 
 				cellsPanel.add(cells[i][j]);
 			}
