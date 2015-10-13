@@ -1,7 +1,7 @@
-package Gol.estrategias;
+package br.unb.cic.lp.gol.estrategias;
 
-import Gol.EstrategiaDeDerivacao;
-import Gol.GameEngine;
+import br.unb.cic.lp.gol.EstrategiaDeDerivacao;
+import br.unb.cic.lp.gol.GameEngine;
 
 public class Maze implements EstrategiaDeDerivacao {
 
@@ -25,7 +25,7 @@ public class Maze implements EstrategiaDeDerivacao {
 
 	@Override
 	public String getName() {
-		return "Conway";
+		return "Maze";
 	}
 
 }

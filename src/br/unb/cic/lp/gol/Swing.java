@@ -8,8 +8,7 @@ import java.text.NumberFormat;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
-import br.unb.cic.lp.gol.estrategias.Conway;
-import br.unb.cic.lp.gol.estrategias.HighLife;
+import br.unb.cic.lp.gol.estrategias.*;
 
 public class Swing {
 	
@@ -26,6 +25,7 @@ public class Swing {
 	private final JLabel numberOfKills;
 	private final JLabel numberOfRevives;
 	private final JLabel strategy;
+	private final JLabel geracao;
 
 	private boolean cycle;
 
@@ -44,6 +44,7 @@ public class Swing {
 
 
 		JPanel statistics = new JPanel();
+		statistics.setLayout(new BoxLayout(statistics, BoxLayout.Y_AXIS));
 		stats.add(statistics, BorderLayout.LINE_START);
 
 		JPanel strats = new JPanel();
@@ -56,8 +57,8 @@ public class Swing {
 
 		game.add(strats, BorderLayout.LINE_START);
 		game.add(cellsPanel, BorderLayout.CENTER);
-		game.add(buttons, BorderLayout.PAGE_END);
 
+		f.add(buttons, BorderLayout.PAGE_END);
 		f.add(stats, BorderLayout.LINE_END);
 		f.add(game, BorderLayout.CENTER);
 
@@ -85,8 +86,6 @@ public class Swing {
 		});
 		buttons.add(bNextGen);
 
-
-
 		JButton bConway = new JButton("Conway");
 		bConway.addActionListener(new ActionListener() {
 			@Override
@@ -96,7 +95,32 @@ public class Swing {
 				update();
 			}
 		});
+		bConway.setAlignmentX(Component.CENTER_ALIGNMENT);
 		strats.add(bConway);
+
+		JButton bDaynNight = new JButton("DaynNight");
+		bDaynNight.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				engine.setEstrategia(new DaynNight());
+				update();
+			}
+		});
+		bDaynNight.setAlignmentX(Component.CENTER_ALIGNMENT);
+		strats.add(bDaynNight);
+
+		JButton bFredkin = new JButton("Frekin");
+		bFredkin.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				engine.setEstrategia(new Fredkin());
+				update();
+			}
+		});
+		bFredkin.setAlignmentX(Component.CENTER_ALIGNMENT);
+		strats.add(bFredkin);
 
 		JButton bHighLife = new JButton("High Life");
 		bHighLife.addActionListener(new ActionListener() {
@@ -107,7 +131,44 @@ public class Swing {
 				update();
 			}
 		});
+		bHighLife.setAlignmentX(Component.CENTER_ALIGNMENT);
 		strats.add(bHighLife);
+
+		JButton bLiveFreeOrDie = new JButton("LiveFreeOrDie");
+		bLiveFreeOrDie.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				engine.setEstrategia(new LiveFreeOrDie());
+				update();
+			}
+		});
+		bLiveFreeOrDie.setAlignmentX(Component.CENTER_ALIGNMENT);
+		strats.add(bLiveFreeOrDie);
+
+		JButton bMaze = new JButton("Maze");
+		bMaze.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				engine.setEstrategia(new Maze());
+				update();
+			}
+		});
+		bMaze.setAlignmentX(Component.CENTER_ALIGNMENT);
+		strats.add(bMaze);
+
+		JButton bSeeds = new JButton("Seeds");
+		bSeeds.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				engine.setEstrategia(new Seeds());
+				update();
+			}
+		});
+		bSeeds.setAlignmentX(Component.CENTER_ALIGNMENT);
+		strats.add(bSeeds);
 
 		ActionListener buttonClick = new ActionListener() {
 			@Override
@@ -148,16 +209,39 @@ public class Swing {
 		cellsPanel.setLayout(new GridLayout(engine.getWidth(), engine.getHeight()));
 
 
+		JLabel label = new JLabel("Celulas Vivas");
+		label.setAlignmentX(Component.CENTER_ALIGNMENT);
+		statistics.add(label);
 		aliveCells = new JLabel(String.valueOf(engine.numberOfAliveCells()));
+		aliveCells.setAlignmentX(Component.CENTER_ALIGNMENT);
 		statistics.add(aliveCells);
 
+		label = new JLabel("N de revividas");
+		label.setAlignmentX(Component.CENTER_ALIGNMENT);
+		statistics.add(label);
 		numberOfRevives= new JLabel(String.valueOf(engine.numberOfRevives()));
+		numberOfRevives.setAlignmentX(Component.CENTER_ALIGNMENT);
 		statistics.add(numberOfRevives);
 
+		label = new JLabel("N de mortes");
+		label.setAlignmentX(Component.CENTER_ALIGNMENT);
+		statistics.add(label);
 		numberOfKills = new JLabel(String.valueOf(engine.numberOfKills()));
+		numberOfKills.setAlignmentX(Component.CENTER_ALIGNMENT);
 		statistics.add(numberOfKills);
 
+		label = new JLabel("Geracao");
+		label.setAlignmentX(Component.CENTER_ALIGNMENT);
+		statistics.add(label);
+		geracao = new JLabel(String.valueOf(engine.getGeracao()));
+		geracao.setAlignmentX(Component.CENTER_ALIGNMENT);
+		statistics.add(geracao);
+
+		label = new JLabel("Estrategia");
+		label.setAlignmentX(Component.CENTER_ALIGNMENT);
+		statistics.add(label);
 		strategy = new JLabel(engine.getEstrategia().getName());
+		strategy.setAlignmentX(Component.CENTER_ALIGNMENT);
 		statistics.add(strategy);
 
 
@@ -197,6 +281,7 @@ public class Swing {
 		numberOfRevives.setText(String.valueOf(engine.numberOfRevives()));
 		numberOfKills.setText(String.valueOf(engine.numberOfKills()));
 		strategy.setText(engine.getEstrategia().getName());
+		geracao.setText(String.valueOf(engine.getGeracao()));
 	}
 
 	private void nextGeneration() {

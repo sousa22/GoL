@@ -18,6 +18,7 @@ public class GameEngine {
 	private Cell[][] cells;
 	private Statistics statistics;
 	private EstrategiaDeDerivacao estrategia;
+	private int geracao;
 
 	/**
 	 * Construtor da classe Environment.
@@ -38,7 +39,9 @@ public class GameEngine {
 				cells[i][j] = new Cell();
 			}
 		}
-		
+
+		geracao = 0;
+
 		this.statistics = statistics;
 	}
 	
@@ -69,7 +72,8 @@ public class GameEngine {
 				}
 			}
 		}
-		
+
+		geracao++;
 		updateStatistics(mustRevive, mustKill);
 	}
 
@@ -203,5 +207,9 @@ public class GameEngine {
 
 	public void setWidth(int width) {
 		this.width = width;
+	}
+
+	public int getGeracao(){
+		return geracao;
 	}
 }
