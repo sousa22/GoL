@@ -152,12 +152,12 @@ public class Swing  {
 		* */
         Button bRandCell = new Button("Make Random Cell");
         bRandCell.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                controller.MakeCellRandom();
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.MakeCellRandom();
 
-            }
-        });
+			}
+		});
         buttons.add(bRandCell);
 
 		/*botao bCLifeCycle - botao para o metodo controlado o LifeCycle,
@@ -166,33 +166,34 @@ public class Swing  {
 		* */
         Button bCLifeCycle = new Button("Controlled Life Cycle");
         bCLifeCycle.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String str =
-                        JOptionPane.showInputDialog("1-Default Generations(100)\n2-Decide n° of Generations");
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String str =
+						JOptionPane.showInputDialog("1-Default Generations(100)\n2-Decide n° of Generations");
 
-                if(str != null){
+				if (str != null) {
 
-                    if(Integer.parseInt(str) == 1){
+					if (Integer.parseInt(str) == 1) {
 
-                        controller.LifeCycle(Integer.parseInt(str),100);
+						controller.LifeCycle(Integer.parseInt(str), 100);
 
-                    }else{
+					} else {
 
-                        String num=
-                                JOptionPane.showInputDialog("How many Generations?");
+						String num =
+								JOptionPane.showInputDialog("How many Generations?");
 
-                        controller.LifeCycle(Integer.parseInt(str), Integer.parseInt(num));
+						controller.LifeCycle(Integer.parseInt(str), Integer.parseInt(num));
 
-                    }
+					}
 
-                }else{
-                    JOptionPane.showMessageDialog(null,"Canceled");
-                }
-            }
-        });
+				} else {
+					JOptionPane.showMessageDialog(null, "Canceled");
+				}
+			}
+		});
         buttons.add(bCLifeCycle);
 
+<<<<<<< HEAD
 
 		/*Botao bKill - botao de matar celulas
 		* mata todas as celulas vivas na matriz de celulas
@@ -202,11 +203,27 @@ public class Swing  {
             @Override
             public void actionPerformed(ActionEvent e) {
                     engine.KillThemAll();
+=======
+		Button bKill = new Button("Kill'em All!");
+		bKill.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				engine.KillThemAll();
+				update();
+			}
+		});
+		buttons.add(bKill);
+>>>>>>> e56b99cbbfd16251696abc1d64fbd76c2b04f49e
 
-               update();
-            }
-        });
-        buttons.add(bKill);
+		Button bReset = new Button("Reset");
+		bReset.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				engine.reset();
+				update();
+			}
+		});
+		buttons.add(bReset);
 
 
 		/*botao bHalt - botao de parar a aplicacao
@@ -216,12 +233,12 @@ public class Swing  {
 		* */
         Button bhalt = new Button("Halt");
         bhalt.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-              JOptionPane.showMessageDialog(null,"Bye!");
-                controller.halt();
-            }
-        });
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Bye!");
+				controller.halt();
+			}
+		});
         buttons.add(bhalt);
 
 		/*botao bConway - botao para alterar a estrategia para Conway
