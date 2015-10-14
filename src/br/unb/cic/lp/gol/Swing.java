@@ -12,21 +12,21 @@ import javax.swing.border.LineBorder;
 import br.unb.cic.lp.gol.estrategias.*;
 
 public class Swing  {
-	
+
 	private static final String DEAD_CELL = "#000000";
 	private static final String ALIVE_CELL = "#ffffff";
 
 	private GameEngine engine;
 	private GameController controller;
 
-	private final JButton[][] cells;
+	private JButton[][] cells;
 
 //	Stats
-	private final JLabel aliveCells;
-	private final JLabel numberOfKills;
-	private final JLabel numberOfRevives;
-	private final JLabel strategy;
-	private final JLabel geracao;
+	private JLabel aliveCells;
+	private JLabel numberOfKills;
+	private JLabel numberOfRevives;
+	private JLabel strategy;
+	private JLabel geracao;
 
 	private boolean cycle;
 
@@ -193,17 +193,9 @@ public class Swing  {
 		});
         buttons.add(bCLifeCycle);
 
-<<<<<<< HEAD
-
 		/*Botao bKill - botao de matar celulas
 		* mata todas as celulas vivas na matriz de celulas
 		* */
-        Button bKill = new Button("Kill'em All!");
-        bKill.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                    engine.KillThemAll();
-=======
 		Button bKill = new Button("Kill'em All!");
 		bKill.addActionListener(new ActionListener() {
 			@Override
@@ -213,7 +205,6 @@ public class Swing  {
 			}
 		});
 		buttons.add(bKill);
->>>>>>> e56b99cbbfd16251696abc1d64fbd76c2b04f49e
 
 		Button bReset = new Button("Reset");
 		bReset.addActionListener(new ActionListener() {
@@ -454,7 +445,7 @@ public class Swing  {
 		cycle = true;
 		controller.startLifeCycle();
 		tLifeCycle.setLabel("Stop LifeCycle");
-	};
+	}
 
 	/*Metodo de parar o loop  LifeCycle
 	* -chama o metodo principal para tal operacao*/
@@ -486,7 +477,7 @@ public class Swing  {
 	private void nextGeneration() {
 		controller.nextGeneration();
 	}
-	
+
 	private void halt() {
 		controller.halt();
 	}
