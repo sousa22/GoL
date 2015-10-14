@@ -31,7 +31,9 @@ public class Swing  {
 	private boolean cycle;
 
 	/* Ao usar a classe swing, aqui e criado o JFrame
-	 * Criado os 4 botoes e o popup de adicionar celular viva */
+	 * Criado os 14 botoes e o popup de adicionar celular viva
+	 * Cria-se tambem os botoes de criacao de uma celula aleatoria
+	 * halt, e outros apresentados abaixo */
 	public Swing(final GameController controller, final GameEngine engine) {
 		this.controller = controller;
 		this.engine = engine;
@@ -65,6 +67,9 @@ public class Swing  {
 		f.add(stats, BorderLayout.LINE_END);
 		f.add(game, BorderLayout.CENTER);
 
+		/*botao tLifeCycle -botao que incia o loop  de geracao
+		* indefinida.Enquando nao clicado, ha o comando de nextgeneration
+		*/
 		Button tLifeCycle = new Button("Start LifeCycle");
 		tLifeCycle.addActionListener(new ActionListener() {
 			@Override
@@ -89,7 +94,9 @@ public class Swing  {
 		});
 		buttons.add(bNextGen);
 
-
+		/*botao bMakeCell - botao que cria uma celula
+		* pela posicao definida pelo usuario
+		* */
         Button bMakeCell = new Button("Make Cell (Row/Col)");
         bMakeCell.addActionListener(new ActionListener() {
             @Override
@@ -140,6 +147,9 @@ public class Swing  {
         });
         buttons.add(bMakeCell);
 
+		/*botao bRandCell - botao que cria uma celula em uma posicao
+		* randomica.metodo em controller
+		* */
         Button bRandCell = new Button("Make Random Cell");
         bRandCell.addActionListener(new ActionListener() {
             @Override
@@ -150,6 +160,10 @@ public class Swing  {
         });
         buttons.add(bRandCell);
 
+		/*botao bCLifeCycle - botao para o metodo controlado o LifeCycle,
+		* com duas opcoes de estouro de geracao: default -100 geracoes, ou um numero
+		* dado pelo usuario.
+		* */
         Button bCLifeCycle = new Button("Controlled Life Cycle");
         bCLifeCycle.addActionListener(new ActionListener() {
             @Override
@@ -179,6 +193,10 @@ public class Swing  {
         });
         buttons.add(bCLifeCycle);
 
+
+		/*Botao bKill - botao de matar celulas
+		* mata todas as celulas vivas na matriz de celulas
+		* */
         Button bKill = new Button("Kill'em All!");
         bKill.addActionListener(new ActionListener() {
             @Override
@@ -190,6 +208,12 @@ public class Swing  {
         });
         buttons.add(bKill);
 
+
+		/*botao bHalt - botao de parar a aplicacao
+		*Diferente do original apenas imprimi uma mensagem de adeus e fecha o programa
+		* O diferencial do botao se da por que ja há a impressao das estatisticas e
+		* numero de celulas que morrem e nascem no canto superior da tela
+		* */
         Button bhalt = new Button("Halt");
         bhalt.addActionListener(new ActionListener() {
             @Override
@@ -200,7 +224,9 @@ public class Swing  {
         });
         buttons.add(bhalt);
 
-
+		/*botao bConway - botao para alterar a estrategia para Conway
+		*muda a estrategia do jogo para as leis de Conway.
+		* */
 		Button bConway = new Button("Conway");
 		bConway.addActionListener(new ActionListener() {
 			@Override
@@ -212,6 +238,10 @@ public class Swing  {
 		});
 		strats.add(bConway, c);
 
+
+		/*botao bDaynNight - botao que altera a estrategia para Day and Night
+		* muda a estrategia do jogo para as leis de Day and Night
+		* */
 		Button bDaynNight = new Button("DaynNight");
 		bDaynNight.addActionListener(new ActionListener() {
 			@Override
@@ -224,6 +254,10 @@ public class Swing  {
 		c.gridy = 1;
 		strats.add(bDaynNight, c);
 
+
+		/*botao bFredkin - botao que altera a estrategia para Fredkin
+		 * muda a estrategia do jogo para as leis de Fredkin
+		 *  */
 		Button bFredkin = new Button("Fredkin");
 		bFredkin.addActionListener(new ActionListener() {
 			@Override
@@ -236,6 +270,11 @@ public class Swing  {
 		c.gridy = 2;
 		strats.add(bFredkin, c);
 
+
+
+		/*botao bHighLife - botao que altera a estrategia para HighLife
+		* muda a estrategia do jogo para as leis de HighLife
+		* */
 		Button bHighLife = new Button("High Life");
 		bHighLife.addActionListener(new ActionListener() {
 			@Override
@@ -248,6 +287,10 @@ public class Swing  {
 		c.gridy = 3;
 		strats.add(bHighLife, c);
 
+
+		/*botao bLiveFreeOrDie - botao que altera a estrategia para Live Free or Die
+		*  muda a estrategia do jogo para as leis de Live Free or Die
+		* */
 		Button bLiveFreeOrDie = new Button("LiveFreeOrDie");
 		bLiveFreeOrDie.addActionListener(new ActionListener() {
 			@Override
@@ -260,6 +303,10 @@ public class Swing  {
 		c.gridy = 4;
 		strats.add(bLiveFreeOrDie, c);
 
+
+		/*botao bMaze - botao que  altera a estrategia para Maze
+		* muda a estrategia do jogo para as leis de Maze
+		* */
 		Button bMaze = new Button("Maze");
 		bMaze.addActionListener(new ActionListener() {
 			@Override
@@ -272,6 +319,11 @@ public class Swing  {
 		c.gridy = 5;
 		strats.add(bMaze, c);
 
+
+
+		/*botao bSeeds - botao que altera a estrategia para Seeds
+		* muda a estrategia do jogo para as leis de Seeds
+		*  */
 		Button bSeeds = new Button("Seeds");
 		bSeeds.addActionListener(new ActionListener() {
 			@Override
@@ -284,6 +336,12 @@ public class Swing  {
 		c.gridy = 6;
 		strats.add(bSeeds, c);
 
+		/*Interface de click para o botao da cell
+		* dada a posicao da celula clicada, a logica
+		* recebe essas posicoes e define um estado novo
+		* para o objeto (alive_cell ou dead_cell)
+		* isso cria a dinamica de matar ou renascer uma celula no meio do jogo
+		* dando mais alternativas e agilidade para o uso do programa*/
 		ActionListener buttonClick = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -303,6 +361,10 @@ public class Swing  {
 			}
 		};
 
+
+		/*Definicao e instanciacao de todas as celulas
+		* Para que a intercafe buttonclick funcione, todas as celulas serao
+		* traatadas como JButtons,*/
 		cells = new JButton[engine.getWidth()][engine.getHeight()];
 		for (int i = 0; i < engine.getHeight(); i++) {
 			for (int j = 0; j < engine.getWidth(); j++) {
@@ -321,7 +383,8 @@ public class Swing  {
 
         statistics.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
 
-
+		/*Label para mostrar quantas celulas estao vivas
+		* adicionado ao panel statistics,*/
         JLabel label = new JLabel("Celulas Vivas");
 		label.setAlignmentX(Component.CENTER_ALIGNMENT);
 		statistics.add(label);
@@ -329,6 +392,8 @@ public class Swing  {
 		aliveCells.setAlignmentX(Component.CENTER_ALIGNMENT);
 		statistics.add(aliveCells);
 
+		/*Label para mostrar quantas celulas foram revividas
+		* adicionado ao panel statistics*/
 		label = new JLabel("N de revividas");
 		label.setAlignmentX(Component.CENTER_ALIGNMENT);
 		statistics.add(label);
@@ -336,6 +401,8 @@ public class Swing  {
 		numberOfRevives.setAlignmentX(Component.CENTER_ALIGNMENT);
 		statistics.add(numberOfRevives);
 
+		/*Label para mostrar o numero de mortes de celulas no jogo todo
+		* adicionado ao statistics*/
 		label = new JLabel("N de mortes");
 		label.setAlignmentX(Component.CENTER_ALIGNMENT);
 		statistics.add(label);
@@ -358,20 +425,22 @@ public class Swing  {
 		statistics.add(strategy);
 
 
-
-
+		/*tamanho e visualizacao da janela que sera usada pela aplicacao*/
 		f.setSize(900, 700);
 		f.setVisible(true);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-
+	/*Metdodo de iniciar o loop LifeCycle
+	* -chama o metodo principal para tal operacao*/
 	private void startLifeCycle(Button tLifeCycle){
 		cycle = true;
 		controller.startLifeCycle();
 		tLifeCycle.setLabel("Stop LifeCycle");
 	};
 
+	/*Metodo de parar o loop  LifeCycle
+	* -chama o metodo principal para tal operacao*/
 	private void stopLifeCycle(Button tLifeCycle){
 		cycle = false;
 		controller.stopLifeCycle();
