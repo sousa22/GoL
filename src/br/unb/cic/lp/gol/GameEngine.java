@@ -79,6 +79,9 @@ public class GameEngine {
 
 	}
 
+	/**Metodo KillThemAll
+	 * metodo que procura todas as celulas  vivas e mata-as
+	 * para o uso de outra rodada do jogo,sem ter que se reiniciar a aplicacao*/
 	protected void KillThemAll(){
 		List<Cell> mustRevive = new ArrayList<Cell>();
 		List<Cell> mustKill = new ArrayList<Cell>();
@@ -92,10 +95,11 @@ public class GameEngine {
 		updateStatistics(mustRevive, mustKill);
 	}
 
-	/*
-	 * Metodo auxiliar que atualiza as estatisticas das celulas 
-	 * que foram mortas ou se tornaram vivas entre duas geracoes. 
-	 */
+
+	/**Metodo updateStatistics
+	* Metodo auxiliar que atualiza as estatisticas das celulas
+	* que foram mortas ou se tornaram vivas entre duas geracoes.
+	* */
 	private void updateStatistics(List<Cell> mustRevive, List<Cell> mustKill) {
 		for (Cell cell : mustRevive) {
 			cell.revive();
@@ -108,6 +112,8 @@ public class GameEngine {
 		}
 	}
 
+	/**Metodo reset
+	 * metodo para limpar as estatisticas do canto superior direito*/
 	public void reset(){
 		statistics = new Statistics();
 		geracao = 0;
@@ -131,6 +137,8 @@ public class GameEngine {
 		}
 	}
 
+	/**Metodo makeCellDead
+	 * metodo que verifica se celula esta em uma posicao aceita, e a mata*/
 	public void makeCellDead(int i, int j) throws InvalidParameterException {
 		if(validPosition(i, j)) {
 			cells[i][j].kill();
@@ -229,6 +237,8 @@ public class GameEngine {
 		this.width = width;
 	}
 
+	/**Metodo getGeracao
+	 * retorna o numero de geracoes que ja foram passadas */
 	public int getGeracao(){
 		return geracao;
 	}

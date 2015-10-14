@@ -30,7 +30,8 @@ public class Swing  {
 
 	private boolean cycle;
 
-	/* Ao usar a classe swing, aqui e criado o JFrame
+	/**Construtor Swing
+	 *  Ao usar a classe swing, aqui e criado o JFrame
 	 * Criado os 14 botoes e o popup de adicionar celular viva
 	 * Cria-se tambem os botoes de criacao de uma celula aleatoria
 	 * halt, e outros apresentados abaixo */
@@ -206,6 +207,9 @@ public class Swing  {
 		});
 		buttons.add(bKill);
 
+		/*Botao bReset - botao que reseta todas os valores
+		* do painel statistics
+		* */
 		Button bReset = new Button("Reset");
 		bReset.addActionListener(new ActionListener() {
 			@Override
@@ -418,6 +422,8 @@ public class Swing  {
 		numberOfKills.setAlignmentX(Component.CENTER_ALIGNMENT);
 		statistics.add(numberOfKills);
 
+		/*Label para mostrar o numero de geracoes de celulas no jogo ate o momento
+		* adicionado ao statistics*/
 		label = new JLabel("Geracao");
 		label.setAlignmentX(Component.CENTER_ALIGNMENT);
 		statistics.add(label);
@@ -425,6 +431,8 @@ public class Swing  {
 		geracao.setAlignmentX(Component.CENTER_ALIGNMENT);
 		statistics.add(geracao);
 
+		/*Label para mostrar qual estrategia em que o jogo esta rodando
+		* adicionado ao statistics*/
 		label = new JLabel("Estrategia");
 		label.setAlignmentX(Component.CENTER_ALIGNMENT);
 		statistics.add(label);
@@ -439,7 +447,7 @@ public class Swing  {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	/*Metdodo de iniciar o loop LifeCycle
+	/**Metdodo de iniciar o loop LifeCycle
 	* -chama o metodo principal para tal operacao*/
 	private void startLifeCycle(Button tLifeCycle){
 		cycle = true;
@@ -447,7 +455,7 @@ public class Swing  {
 		tLifeCycle.setLabel("Stop LifeCycle");
 	}
 
-	/*Metodo de parar o loop  LifeCycle
+	/**Metodo de parar o loop  LifeCycle
 	* -chama o metodo principal para tal operacao*/
 	private void stopLifeCycle(Button tLifeCycle){
 		cycle = false;
@@ -455,7 +463,7 @@ public class Swing  {
 		tLifeCycle.setLabel("Start LifeCycle");
 	}
 
-	/**
+	/**Metodo update
 	 * Atualiza o componente view (representado pela classe GameBoard),
 	 * possivelmente como uma resposta a uma atualizacao do jogo.
 	 */
@@ -474,10 +482,16 @@ public class Swing  {
 		geracao.setText(String.valueOf(engine.getGeracao()));
 	}
 
+	/**Metodo nextGeneration
+	 * chama o metodo principal da GameController para gerar uma nova leva de celulas com a devida estrategia
+	 * */
 	private void nextGeneration() {
 		controller.nextGeneration();
 	}
 
+	/**Metodo halt
+	 * Metodo que chama o metodo principal de GameController para parar a execucao do programa
+	 * */
 	private void halt() {
 		controller.halt();
 	}

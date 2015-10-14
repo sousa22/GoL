@@ -19,7 +19,10 @@ public class GameController {
 
 	private Thread cycle = null;
 
-
+	/**Metodo startLifeCycle
+	 * Metodo que gera um loop para a execucao de indefinidas geracoes para o programa
+	 * cria-se um thread, e dentro de um loop infinito,chama o metodo nextGeneration
+	 * */
 	public void startLifeCycle() {
 		cycle = new Thread(new Runnable() {
 			@Override
@@ -37,6 +40,12 @@ public class GameController {
 		cycle.start();
 	}
 
+	/**Metodo LifeCycle(int alt,int Ngen)
+	 * Metodo que gerencia um loop controlado,com um numero finito de geracoes,
+	 * dependendo da opcao selecionada pelo usuario-
+	 * 1-gera defaul de 100 geracoes
+	 * 2-pede um valor para gerar as geracoes,sendo 0 ate o que o usuario escolher
+	 * */
 	protected void LifeCycle(int alt,int Ngen){
 		int i = 0;
 
@@ -61,10 +70,14 @@ public class GameController {
 
 	}
 
+	/**Metodo stopLifeCycle
+	 * metodo que tremina a thread do metodo startLifeCycle
+	 *  */
 	public void stopLifeCycle() {
 		cycle.stop();
 	}
-	
+
+
 	public GameEngine getEngine() {
 		return engine;
 	}
@@ -88,7 +101,10 @@ public class GameController {
 	public void start() {
 		board.update();
 	}
-	
+
+	/**Metodo Halt
+	 * metodo modificado do original, o uso de impressoes em tela ou prompt de comando em outro lugar senao na veiw
+	 * vai contra o padrao de projeto MVC,dando consistencia assim á manutencao adequada do metodo*/
 	public void halt() {
 		//oops, nao muito legal fazer sysout na classe Controller
 		//System.out.println("\n \n");
@@ -96,6 +112,10 @@ public class GameController {
 		System.exit(0);
 	}
 
+	/**Metodo MakeCellRandom
+	 * metodo criado para a obtencao de uma celula em uma posicao aleatoria
+	 * o uso eh para facilitar e dar mais dinamica a aplicacao,sem ter q ou escolher um local para a celula
+	 * ou ter q definir uma linha/coluna,mesmo tendo tais operacoes no programa*/
 	public void MakeCellRandom(){
 
 		Random n1 = new Random();
